@@ -1,1 +1,5 @@
-<p>property list</p>
+<div class="row">
+  <div class="shadow-lg col-sm-4 p-2" *ngFor="let house of Properties ">
+     <app-property-card [property]="house"></app-property-card>
+  </div>
+</div>

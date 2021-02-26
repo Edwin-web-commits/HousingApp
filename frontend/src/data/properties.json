@@ -55,7 +55,7 @@
     "PostedOn":"01-Jan-2019"
   },
   {
-    "Id":1,
+    "Id":3,
     "SellRent":1,
     "Name":"Gun Hill",
     "PType":"House",
@@ -123,7 +123,7 @@
     "Address":"18 Street",
     "Address2":"Golf Course Road",
     "Address3":"Near Bank South Africa",
-    "City":"Polokwane",
+    "City":"Cape Town",
     "Description":"2 BHK, 2 Bathroom, 1 Car Parking",
     "FloorNo":"1",
     "TotalFloor":"3",

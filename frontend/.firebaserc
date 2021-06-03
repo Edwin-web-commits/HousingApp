@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "housingapp-angularr"
+  },
+  "targets": {
+    "housingapp-angularr": {
+      "hosting": {
+        "frontend": [
+          "housingapp-angularr"
+        ]
+      }
+    }
   }
 }

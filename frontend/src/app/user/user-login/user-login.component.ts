@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -12,24 +13,35 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserLoginComponent implements OnInit {
 
+
+
   constructor(private authService: AuthService, private alertify:AlertifyService,private router:Router) { }
 
   ngOnInit(): void {
   }
 
   onLogin(loginForm : NgForm){
-    const token = this.authService.authUser(loginForm.value);
 
-    if(token){
-      localStorage.setItem('token', token.userName);
+     //const token = this.authService.authUser(loginForm.value);
+     this.authService.login(loginForm.value.email, loginForm.value.password).subscribe((data: any)=> {
 
+
+      localStorage.setItem('token',data.token);
+      localStorage.setItem('username', loginForm.value.email);
       this.alertify.success("Login Successful");
-      loginForm.reset();
-
+       loginForm.reset();
       this.router.navigate(['/']);
-    }else{
-      this.alertify.error("Username or password is wrong");
-    }
+     });
+    // if(token){
+    //   localStorage.setItem('token', token.userName);
+
+    //   this.alertify.success("Login Successful");
+    //   loginForm.reset();
+
+    //   this.router.navigate(['/']);
+    // }else{
+    //   this.alertify.error("Username or password is wrong");
+    // }
   }
 
 }

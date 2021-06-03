@@ -9,7 +9,7 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
 })
 export class PropertyCardComponent implements OnInit {
 
-  @Input() property:IPropertyBase ;
+  @Input() property:IPropertyBase;
   @Input() hideIcons: boolean;
 
   constructor() { }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
@@ -29,11 +29,14 @@ import { PropertyDetailResolverService } from './property/property-detail/proper
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
+import { AuthGuard } from './auth/auth.guard';
+import { HttpErrorInterceptorService } from './services/httperror-interceptor.service';
+
 const appRoutes: Routes=[
   {path:'',component: PropertyListComponent},
   {path:'rent-property',component: PropertyListComponent},
-  {path:'add-property',component: AddPropertyComponent},
-  {path:'property-detail/:id',component: PropertyDetailComponent , resolve: {prp: PropertyDetailResolverService}},
+  {path:'add-property',component: AddPropertyComponent, canActivate:[AuthGuard]},
+  {path:'property-detail/:id',component: PropertyDetailComponent , resolve: {prp: PropertyDetailResolverService}, canActivate:[AuthGuard]},
   {path:'user/register',component: UserRegisterComponent},
   {path:'user/login',component: UserLoginComponent},
   {path:'**',component:PropertyListComponent}
@@ -67,10 +70,21 @@ const appRoutes: Routes=[
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     NgxGalleryModule
-   
+
 
   ],
-  providers: [HousingService,UserServiceService,AlertifyService,AuthService, PropertyDetailResolverService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi:true
+    },
+    HousingService,
+    UserServiceService,
+    AlertifyService,
+    AuthService,
+    PropertyDetailResolverService,
+    AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

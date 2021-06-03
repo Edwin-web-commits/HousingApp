@@ -6,13 +6,7 @@
     </div>
     <div class="card-body">
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-        <div class="form-group col-12">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" formControlName="userName">
-               <span *ngIf="!userName.valid && (userName.touched || userSubmitted)" class="error-block">
-                  Please provide name
-               </span>
-        </div>
+
 
         <div class="form-group col-12">
           <label for="email" class="form-label">Email</label>
@@ -55,9 +49,25 @@
         </div>
 
         <div class="form-group col-12">
+          <label for="fname" class="form-label">FirstName</label>
+          <input type="text" class="form-control" formControlName="firstName">
+             <span *ngIf="!firstName.valid && (firstName.touched || userSubmitted)" class="error-block">
+                Please provide name
+             </span>
+      </div>
+
+      <div class="form-group col-12">
+        <label for="lname" class="form-label">LastName</label>
+        <input type="text" class="form-control" formControlName="lastName">
+           <span *ngIf="!lastName.valid && (lastName.touched || userSubmitted)" class="error-block">
+              Please provide name
+           </span>
+    </div>
+
+        <div class="form-group col-12">
           <label for="mobile" class="form-label">Mobile</label>
-          <input type="text" class="form-control" formControlName="mobile">
-          <span *ngIf="!mobile.valid && (mobile.touched || userSubmitted)" class="error-block">Please provide mobile number</span>
+          <input type="text" class="form-control" formControlName="phoneNumber">
+          <span *ngIf="!phoneNumber.valid && (phoneNumber.touched || userSubmitted)" class="error-block">Please provide mobile number</span>
         </div>
 
         <div class="form-group col-12">

@@ -4,14 +4,21 @@ import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators'
 import { IPropertyBase } from '../model/ipropertybase';
 import { Property } from '../model/property';
+import {environment} from '../../environments/environment'
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class HousingService {
+  baseUrl=environment.baseUrl;
 
   constructor(private http:HttpClient) { }
+
+  getAllCities(): Observable<string[]>{
+
+    return this.http.get<string[]>(this.baseUrl+'/cities') ;
+  }
 
   getAllProperties(sellRent?: number): Observable<Property[]>{
     return this.http.get('/data/properties.json').pipe(
@@ -32,10 +39,10 @@ export class HousingService {
           }else{
             propertiesArray.push(localProperties[id]);
           }
-  
+
           }
         }
-  
+
 
         for(const id in data){
 

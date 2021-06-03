@@ -30,7 +30,7 @@ export class NavBarComponent implements OnInit {
   onLogout(){
     localStorage.removeItem('username');
     localStorage.removeItem("token");
-    
+
     this.alertify.success("You are logged out");
     this.router.navigate(['user/register']);
   }

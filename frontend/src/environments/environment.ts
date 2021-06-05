@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  //baseUrl:"http://localhost:64200/api"
-  baseUrl:"http://localhost/house_api/api"
+    production: false,
+    // baseUrl:"http://localhost:64200/api"
+    baseUrl: 'http://localhost/house_api/api'
 
 };
 
@@ -16,4 +16,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

@@ -6,23 +6,23 @@ import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class PropertyDetailResolverService implements Resolve<Property> {
 
-constructor(private housingService: HousingService, private router:Router) { }
+    constructor(private housingService: HousingService, private router: Router) { }
 
-resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Property>|Property{
-  const propId =route.params['id'];
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Property>|Property{
+        const propId = route.params.id;
 
-  return this.housingService.getProperty(+propId).pipe(
-    catchError(error =>{
-      
-       this.router.navigate(['/']);
-       return of(null);
-    })
-  );
+        return this.housingService.getProperty(+propId).pipe(
+            catchError(error => {
 
-}
+                this.router.navigate(['/']);
+                return of(null);
+            })
+        );
+
+    }
 
 }

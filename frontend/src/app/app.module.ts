@@ -32,59 +32,59 @@ import { SortPipe } from './pipes/sort.pipe';
 import { AuthGuard } from './auth/auth.guard';
 import { HttpErrorInterceptorService } from './services/httperror-interceptor.service';
 
-const appRoutes: Routes=[
-  {path:'',component: PropertyListComponent},
-  {path:'rent-property',component: PropertyListComponent},
-  {path:'add-property',component: AddPropertyComponent, canActivate:[AuthGuard]},
-  {path:'property-detail/:id',component: PropertyDetailComponent , resolve: {prp: PropertyDetailResolverService}, canActivate:[AuthGuard]},
-  {path:'user/register',component: UserRegisterComponent},
-  {path:'user/login',component: UserLoginComponent},
-  {path:'**',component:PropertyListComponent}
+const appRoutes: Routes = [
+    {path: "", component: PropertyListComponent},
+    {path: "rent-property", component: PropertyListComponent},
+    {path: "add-property", component: AddPropertyComponent, canActivate: [AuthGuard]},
+    {path: "property-detail/:id", component: PropertyDetailComponent , resolve: {prp: PropertyDetailResolverService}, canActivate: [AuthGuard]},
+    {path: "user/register", component: UserRegisterComponent},
+    {path: "user/login", component: UserLoginComponent},
+    {path: "**", component: PropertyListComponent}
 
-]
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PropertyCardComponent,
-    PropertyListComponent,
-    NavBarComponent,
-    AddPropertyComponent,
-    PropertyDetailComponent,
-    UserLoginComponent,
-    UserRegisterComponent,
-    FilterPipe,
-    SortPipe
+    declarations: [
+        AppComponent,
+        PropertyCardComponent,
+        PropertyListComponent,
+        NavBarComponent,
+        AddPropertyComponent,
+        PropertyDetailComponent,
+        UserLoginComponent,
+        UserRegisterComponent,
+        FilterPipe,
+        SortPipe
 
-  ],
-  imports: [
-    TabsModule.forRoot(),
-    ButtonsModule.forRoot(),
-    BrowserAnimationsModule,
-    BsDatepickerModule.forRoot(),
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule,
-    BsDropdownModule.forRoot(),
-    NgxGalleryModule
+    ],
+    imports: [
+        TabsModule.forRoot(),
+        ButtonsModule.forRoot(),
+        BrowserAnimationsModule,
+        BsDatepickerModule.forRoot(),
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot(appRoutes),
+        BrowserAnimationsModule,
+        BsDropdownModule.forRoot(),
+        NgxGalleryModule
 
 
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptorService,
-      multi:true
-    },
-    HousingService,
-    UserServiceService,
-    AlertifyService,
-    AuthService,
-    PropertyDetailResolverService,
-    AuthGuard],
-  bootstrap: [AppComponent]
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptorService,
+            multi: true
+        },
+        HousingService,
+        UserServiceService,
+        AlertifyService,
+        AuthService,
+        PropertyDetailResolverService,
+        AuthGuard],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

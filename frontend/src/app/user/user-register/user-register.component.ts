@@ -1,9 +1,10 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserServiceService } from 'src/app/services/user-service.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class UserRegisterComponent implements OnInit {
     user: User;
     userSubmitted: boolean;
 
-    constructor(private authService: AuthService, private userService: UserServiceService, private alertyfyService: AlertifyService) { }
+    constructor(private authService: AuthService, private userService: UserService, private alertyfyService: AlertifyService) { }
 
     ngOnInit(): void {
         this.registrationForm = new FormGroup({
@@ -55,7 +56,7 @@ export class UserRegisterComponent implements OnInit {
             this.authService.registerUser(this.userData()).subscribe( () => {
                 this.registrationForm.reset();
                 this.userSubmitted = false;
-                this.alertyfyService.success("Congratulations, You are successfully registered");
+                this.alertyfyService.success('Congratulations, You are successfully registered');
             });
 
         }

@@ -18,8 +18,7 @@
   * eqeqeq:
     - Option "smart" allows for comparing two literal values, evaluating the value of typeof and null comparisons.
 
-3 rules are not known by tslint-to-eslint-config to have ESLint equivalents:
+2 rules are not known by tslint-to-eslint-config to have ESLint equivalents:
   * tslint-to-eslint-config does not know the ESLint equivalent for TSLint's "import-spacing".
-  * tslint-to-eslint-config does not know the ESLint equivalent for TSLint's "typedef".
   * tslint-to-eslint-config does not know the ESLint equivalent for TSLint's "whitespace".
 

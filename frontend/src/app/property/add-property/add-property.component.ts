@@ -48,7 +48,6 @@ export class AddPropertyComponent implements OnInit {
         this.CreateAddPropertyForm();
         this.housingService.getAllCities().subscribe(data => {
             this.cityList = data;
-            console.log("data is ");
             console.log(data);
         });
     }
@@ -222,9 +221,7 @@ export class AddPropertyComponent implements OnInit {
     }
 
     mapProperty(): void {
-
         this.property.Id = this.housingService.newPropID();
-
         this.property.SellRent = +this.SellRent.value;
         this.property.BHK = this.BHK.value;
         this.property.PType = this.PType.value;
@@ -244,7 +241,7 @@ export class AddPropertyComponent implements OnInit {
         this.property.AOP = this.AOP.value;
         this.property.Gated = this.Gated.value;
         this.property.MainEntrance = this.MainEntrance.value;
-        this.property.Posession = this.PossessionOn.value;
+        this.property.Possession = this.PossessionOn.value;
         this.property.Description = this.Description.value;
         this.property.PostedOn = new Date().toString();
     }

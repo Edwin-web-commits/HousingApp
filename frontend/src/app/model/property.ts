@@ -1,7 +1,6 @@
-import { IPropertyBase } from "./ipropertybase";
+import { IPropertyBase } from './ipropertybase';
 
-export class Property implements IPropertyBase{
-
+export class Property implements IPropertyBase {
     Id: number;
     SellRent: number;
     Name: string;
@@ -11,20 +10,20 @@ export class Property implements IPropertyBase{
     Price: number;
     BuiltArea: number;
     CarpetArea?: number;
-    Image?: string;
     Address: string;
     Address2?: string;
     City: string;
-    Description?: string;
-    FloorNo?: number;
-    TotalFloor?: number;
+    FloorNo?: string;
+    TotalFloor?: string;
     RTM: number;
-    AOP?: number; // age of property
+    AOP?: string;
     MainEntrance?: string;
-    Gated?: number;
     Security?: number;
+    Gated?: number;
     Maintenance?: number;
-    Posession?: string;
+    Possession?: string;
+    Image?: string;
+    Description?: string;
     PostedOn: string;
     PostedBy: number;
 }

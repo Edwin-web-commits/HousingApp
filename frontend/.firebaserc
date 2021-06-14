@@ -1,12 +1,9 @@
 {
-  "projects": {
-    "default": "housingapp-angularr"
-  },
   "targets": {
-    "housingapp-angularr": {
+    "hspa-angular": {
       "hosting": {
-        "frontend": [
-          "housingapp-angularr"
+        "hspa": [
+          "hspa-angular"
         ]
       }
     }

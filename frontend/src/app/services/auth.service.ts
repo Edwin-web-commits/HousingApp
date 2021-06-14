@@ -26,7 +26,7 @@ export class AuthService {
             phoneNumber: user.phoneNumber
         };
 
-        return this.http.post(this.baseUrl + "/account/register", body);
+        return this.http.post(this.baseUrl + '/account/register', body);
     }
     login(email: string, password: string){
 

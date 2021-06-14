@@ -2,8 +2,8 @@
   <div class="col-sm-4 p-0">
     <div class="card">
       <div class="card-img-wrapper">
-        <img *ngIf="property.Image" class="card-img-top" src="assets/images/{{property.Image}}.jpg">
-        <img *ngIf="!property.Image" class="card-img-top" src="assets/images/default-img.jpg" >
+        <img *ngIf="property.Image" class="card-img-top" src="assets/images/{{property.Image}}.png">
+        <img *ngIf="!property.Image" class="card-img-top" src="assets/images/house_default.png">
       </div>
       <div class="card-body">
         <h1 class="card-title">{{property.Name}}</h1>
@@ -59,7 +59,7 @@
 
                   <div class="heading">
                       <strong>Posession</strong>
-                      <p>{{property.Posession}}</p>
+                      <p>{{property.Possession}}</p>
                   </div>
               </div>
 
@@ -103,7 +103,6 @@
 
         </tab>
         <tab heading="Photos">
-         
           <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
         </tab>
         <tab heading="Contact">

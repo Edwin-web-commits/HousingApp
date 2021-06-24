@@ -12,8 +12,8 @@ import { environment } from '../../environments/environment';
 })
 export class HousingService {
 
-    baseUrl = environment.baseUrl;
-
+    // baseUrl = environment.baseUrl;   //for production
+    readonly baseUrl = 'http://localhost:64200/api'; // for development
     constructor(private http: HttpClient) { }
 
     getAllCities(): Observable<string[]> {
@@ -21,46 +21,48 @@ export class HousingService {
     }
 
     getProperty(id: number) {
-        return this.getAllProperties().pipe(
-            map(propertiesArray =>
-            // throw new Error('Some error');
-                propertiesArray.find(p => p.Id === id)
-            )
-        );
+        return this.http.get<Property>(this.baseUrl+'/properties/detail/'+id.toString());
+        // return this.getAllProperties(1).pipe(
+        //     map(propertiesArray =>
+        //     // throw new Error('Some error');
+        //         propertiesArray.find(p => p.id === id)
+        //     )
+        // );
     }
 
     getAllProperties(SellRent?: number): Observable<Property[]> {
-        return this.http.get('data/properties.json').pipe(
-            map(data => {
-                const propertiesArray: Array<Property> = [];
-                const localProperties = JSON.parse(localStorage.getItem('newProp'));
+        return this.http.get<Property[]>(this.baseUrl+'/properties/type/'+SellRent.toString());
+        // return this.http.get('data/properties.json').pipe(
+        //     map(data => {
+        //         const propertiesArray: Array<Property> = [];
+        //         const localProperties = JSON.parse(localStorage.getItem('newProp'));
 
-                if (localProperties) {
-                    for (const id in localProperties) {
-                        if (SellRent) {
-                            if (localProperties.hasOwnProperty(id) && localProperties[id].SellRent === SellRent) {
-                                propertiesArray.push(localProperties[id]);
-                            }
-                        } else {
-                            propertiesArray.push(localProperties[id]);
-                        }
-                    }
-                }
+        //         if (localProperties) {
+        //             for (const id in localProperties) {
+        //                 if (SellRent) {
+        //                     if (localProperties.hasOwnProperty(id) && localProperties[id].SellRent === SellRent) {
+        //                         propertiesArray.push(localProperties[id]);
+        //                     }
+        //                 } else {
+        //                     propertiesArray.push(localProperties[id]);
+        //                 }
+        //             }
+        //         }
 
-                for (const id in data) {
-                    if (SellRent) {
-                        if (data.hasOwnProperty(id) && data[id].SellRent === SellRent) {
-                            propertiesArray.push(data[id]);
-                        }
-                    } else {
-                        propertiesArray.push(data[id]);
-                    }
-                }
-                return propertiesArray;
-            })
-        );
+        //         for (const id in data) {
+        //             if (SellRent) {
+        //                 if (data.hasOwnProperty(id) && data[id].SellRent === SellRent) {
+        //                     propertiesArray.push(data[id]);
+        //                 }
+        //             } else {
+        //                 propertiesArray.push(data[id]);
+        //             }
+        //         }
+        //         return propertiesArray;
+        //     })
+        // );
 
-        return this.http.get<Property[]>('data/properties.json');
+        // return this.http.get<Property[]>('data/properties.json');
     }
     addProperty(property: Property) {
         let newProp = [property];
@@ -82,5 +84,27 @@ export class HousingService {
             localStorage.setItem('PID', '101');
             return 101;
         }
+    }
+
+    getPropertyAge(dateOfEstablishment: Date): string{
+        const today=new Date();
+        const estDate=new Date(dateOfEstablishment);
+        let age =today.getFullYear() - estDate.getFullYear();
+        const m= today.getMonth() - estDate.getMonth();
+
+        // Current month smaller than establishment month or
+        // Same month but current date smaller than establishment date
+        if(m<0 || (m ===0 && today.getDate() < estDate.getDate())){
+            age--;
+        }
+        // Establishment date is future date
+        if(today < estDate){
+            return '0';
+        }
+        // Age is less than a year
+        if(age === 0){
+            return 'Less than a year';
+        }
+        return age.toString();
     }
 }

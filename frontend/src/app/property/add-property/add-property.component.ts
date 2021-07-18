@@ -48,6 +48,12 @@ export class AddPropertyComponent implements OnInit {
         private alertify: AlertifyService) { }
 
     ngOnInit() {
+
+        if(!localStorage.getItem('username')){
+            this.alertify.error('You must be logged in to add a property');
+            this.router.navigate(['/user/login']);
+        }
+
         this.CreateAddPropertyForm();
         this.housingService.getAllCities().subscribe(data => {
             this.cityList = data;
